@@ -1,0 +1,8 @@
+<h1>Hola este es mi todoApp</h1>
+<h2>{{ subtitle }}</h2>
+
+@for (task of tasks; track $index) {
+  <ul>
+    <li> {{ $index + 1 }} - {{ task }} </li>
+  </ul>
+}
