@@ -1,13 +1,25 @@
-<div class="container m-5">
-    <div class="row">
-        <div class="col-11">
-            <h1>My to do app</h1>
-            <h3>All my tasks in one place</h3>
-        </div>
+<div class="grid grid-cols-12 mt-4 md:mt-10">
+    <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
+        <h1 class="text-3xl bold">My Day</h1>
+        <h3 class="text-sm">All my tasks in one place</h3>
     </div>
-    <div class="row">
-        <div class="col-12">
-            
-        </div>
+    <div class="col-span-12">
+        <input type="text">
+    </div>
+    <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
+        <mat-form-field class="w-full">
+            <mat-label>Type new to do</mat-label>
+            <input matInput placeholder="Ex. work" value="">
+        </mat-form-field>
+    </div>
+    <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
+        <mat-card>
+            <mat-card-content class="">
+                <ul>
+                    <li><mat-checkbox>Opcion 1</mat-checkbox></li>
+                    <li><mat-checkbox>Opcion 1</mat-checkbox></li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
