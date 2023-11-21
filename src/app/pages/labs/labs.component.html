@@ -1,11 +1,39 @@
-<h1>Hola este es mi todoApp</h1>
-<h2>{{ subtitle }}</h2>
+<div class="container mx-auto ml-8 mt-8">
+  <h1>Hola este es mi todoApp</h1>
+  <h2>{{ subtitle }}</h2>
 
-@for (task of tasks; track $index) {
+  @for (task of tasks; track $index) {
   <ul>
     <li> {{ $index + 1 }} - {{ task }} </li>
   </ul>
-}
+  }
 
+  <p><b>Hola soy: </b>{{ myName }} y mi edad es: {{ age }}</p>
+  <p><b>Hola soy: </b>{{ myName2() }} y mi edad es: {{ age }}</p>
 
-<button type="button" class="btn btn-primary">Primary</button>
+  <input type="text" [value]="myName">
+  <button class="bg-slate-500" [disabled]="disabled">Click here!</button>
+  <img [src]="img" alt="" class="w-60 h-30 border mt-5">
+
+  <p>Object Person: {{ person.name }} </p>
+
+  <hr>
+  <h1 class="text-3xl">Event Binding</h1>
+  <button class="bg-slate-700 text-cyan-50 p-2 mr-2" (click)="clickHandler()">Click me</button>
+  <button class="bg-slate-700 text-cyan-50 p-2" (dblclick)="clickHandler()">Click double me</button>
+  <p>(change)</p>
+  <input type="number" class="border" (change)="changeHandler($event)">
+  <p>(Keydown)</p>
+  <input type="text" class="border" (keydown)="keydownHandler($event)">
+  <p>(Keydown enter)</p>
+  <input type="text" class="border" (keydown.enter)="clickHandler()">
+  <p>(Keydown shift + t)</p>
+  <input type="text" class="border" (keydown.shift.t)="clickHandler()">
+
+  <hr>
+  <h1 class="text-3xl">Signals</h1>
+  <p>(signal event)</p>
+  <input type="text" [value]="myName2()" class="border" (change)="changeHandlerSignal($event)">
+  <p>{{ myName2() }}</p>
+
+</div>
