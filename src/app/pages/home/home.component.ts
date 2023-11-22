@@ -10,6 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 
+// MODELS
+import { task } from '../../models/tasks.model';
+
 
 @Component({
   selector: 'app-home',
@@ -36,13 +39,36 @@ export class HomeComponent {
     'Crear componentes'
   ])
 
+  tasks2 = signal<task[]>([
+    {
+      id: Date.now(),
+      title: 'Crear proyecto',
+      completed: false
+    },
+    {
+      id: Date.now(),
+      title: 'Ejecutar proyecto',
+      completed: false
+    }
+  ])
+
   inputChangeHandler(event: Event) {
     const input = event.target as HTMLInputElement
-    const newTask = input.value
-    this.tasks.update((tasks) => [
-      ...tasks, newTask
+    const newTask = input.value 
+    this.addTask(newTask)
+    input.value = ''   
+  }
+
+  addTask(title: string) {
+    const newTask = {
+      id: Date.now(),
+      title,
+      completed: false
+    }
+
+    this.tasks2.update((tasks2) => [
+      ...tasks2, newTask
     ])
-    input.value = ''
   }
 
   deleteTask(index: number) {

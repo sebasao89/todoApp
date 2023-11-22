@@ -16,11 +16,11 @@
         <mat-card>
             <mat-card-content>
                 <ul flex flex-wrap>
-                    @for (item of tasks(); track $index) {
+                    @for (item of tasks2(); track $index) {
                     <li class="flex items-center">
-                        <mat-checkbox>{{ item }}</mat-checkbox>
-                        <button mat-mini-fab color="primary" class="ml-auto">
-                            <mat-icon>home</mat-icon>
+                        <mat-checkbox>{{ item.title }}</mat-checkbox>                        
+                        <button mat-mini-fab color="primary" class="ml-auto" (click)="deleteTask($index)">
+                            <mat-icon>X</mat-icon>
                         </button>
                     </li>
                     }
