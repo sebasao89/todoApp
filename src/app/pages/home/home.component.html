@@ -9,15 +9,20 @@
     <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
         <mat-form-field class="w-full">
             <mat-label>Type new to do</mat-label>
-            <input matInput placeholder="Ex. work" value="">
+            <input matInput placeholder="Ex. work" (change)="inputChangeHandler($event)">
         </mat-form-field>
     </div>
     <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
         <mat-card>
-            <mat-card-content class="">
-                <ul>
+            <mat-card-content>
+                <ul flex flex-wrap>
                     @for (item of tasks(); track $index) {
-                        <li><mat-checkbox>{{ item }}</mat-checkbox></li>                        
+                    <li class="flex items-center">
+                        <mat-checkbox>{{ item }}</mat-checkbox>
+                        <button mat-mini-fab color="primary" class="ml-auto">
+                            <mat-icon>home</mat-icon>
+                        </button>
+                    </li>
                     }
                 </ul>
             </mat-card-content>

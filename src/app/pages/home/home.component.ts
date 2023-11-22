@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -34,4 +36,19 @@ export class HomeComponent {
     'Crear componentes'
   ])
 
+  inputChangeHandler(event: Event) {
+    const input = event.target as HTMLInputElement
+    const newTask = input.value
+    this.tasks.update((tasks) => [
+      ...tasks, newTask
+    ])
+    input.value = ''
+  }
+
+  deleteTask(index: number) {
+    //Eliminar un elemento de un array con signal y sin mutar el array utilizando el metodo filter
+    this.tasks.update((tasks) => tasks.filter((task, i) => i !== index))
+  }
+
 }
+
