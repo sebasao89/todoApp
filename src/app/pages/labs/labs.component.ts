@@ -12,12 +12,19 @@ export class LabsComponent {
 
   subtitle = 'Bienvenidos!';
 
-  tasks: string[] = [
-    'Instalar Angular CLI',
+  // tasks: string[] = [
+  //   'Instalar Angular CLI',
+  //   'Crear proyecto',
+  //   'Ejecutar servidor',
+  //   'Crear componentes'
+  // ]
+
+  tasks = signal([
+    'Instalar Angular CLI signal',
     'Crear proyecto',
     'Ejecutar servidor',
     'Crear componentes'
-  ]
+  ])
 
   myName: string = "Sebastian"
   myName2 = signal("Mar")

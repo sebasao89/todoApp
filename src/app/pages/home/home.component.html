@@ -16,8 +16,9 @@
         <mat-card>
             <mat-card-content class="">
                 <ul>
-                    <li><mat-checkbox>Opcion 1</mat-checkbox></li>
-                    <li><mat-checkbox>Opcion 1</mat-checkbox></li>
+                    @for (item of tasks(); track $index) {
+                        <li><mat-checkbox>{{ item }}</mat-checkbox></li>                        
+                    }
                 </ul>
             </mat-card-content>
         </mat-card>

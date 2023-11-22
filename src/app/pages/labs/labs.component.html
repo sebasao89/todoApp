@@ -2,11 +2,13 @@
   <h1>Hola este es mi todoApp</h1>
   <h2>{{ subtitle }}</h2>
 
-  @for (task of tasks; track $index) {
+  @for (task of tasks(); track $index) {
   <ul>
     <li> {{ $index + 1 }} - {{ task }} </li>
   </ul>
   }
+
+  <p>Total items: {{ tasks().length }}</p>
 
   <p><b>Hola soy: </b>{{ myName }} y mi edad es: {{ age }}</p>
   <p><b>Hola soy: </b>{{ myName2() }} y mi edad es: {{ age }}</p>
@@ -35,5 +37,9 @@
   <p>(signal event)</p>
   <input type="text" [value]="myName2()" class="border" (change)="changeHandlerSignal($event)">
   <p>{{ myName2() }}</p>
+
+  <hr>
+  <h1 class="text-3xl">Directivas de control</h1>
+
 
 </div>

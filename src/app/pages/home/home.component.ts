@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -26,5 +26,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  tasks = signal([
+    'Instalar Angular CLI signal',
+    'Crear proyecto',
+    'Ejecutar servidor',
+    'Crear componentes'
+  ])
 
 }
