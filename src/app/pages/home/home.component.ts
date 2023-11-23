@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 
 // MODELS
 import { task } from '../../models/tasks.model';
@@ -25,7 +26,8 @@ import { task } from '../../models/tasks.model';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -75,6 +77,21 @@ export class HomeComponent {
     //Eliminar un elemento de un array con signal y sin mutar el array utilizando el metodo filter
     this.tasks2.update((tasks2) => tasks2.filter((task2, i) => i !== index))
   }
+
+  updateTask(index: number) {
+    this.tasks2.update((tasks2) => {
+      return tasks2.map((task, position) => {
+        if(position === index) {
+          return {
+            ...task,
+            completed: !task.completed
+        }
+      }
+      return task
+      })
+    })
+  }
+
 
 }
 

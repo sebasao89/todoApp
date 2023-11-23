@@ -2,7 +2,7 @@
     <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
         <h1 class="text-3xl bold">My Day</h1>
         <h3 class="text-sm">All my tasks in one place</h3>
-    </div>
+    </div>    
     <div class="col-span-12">
         <input type="text">
     </div>
@@ -18,14 +18,22 @@
                 <ul flex flex-wrap>
                     @for (item of tasks2(); track $index) {
                     <li class="flex items-center">
-                        <mat-checkbox>{{ item.title }}</mat-checkbox>                        
+                        <mat-checkbox [checked]="item.completed" (change)="updateTask($index)">{{ item.title }}</mat-checkbox>                        
                         <button mat-mini-fab color="warn" class="ml-auto btnDelete" (click)="deleteTask($index)">
                             <mat-icon>x</mat-icon>
                         </button>
                     </li>
                     }
                 </ul>
+                <mat-divider></mat-divider>
+                <p class="mt-4"><strong>Items left: </strong> {{ tasks2().length }}</p>
             </mat-card-content>
         </mat-card>
     </div>
 </div>
+
+<pre>
+    <code>
+        {{ tasks2() | json }}
+    </code>
+</pre>
