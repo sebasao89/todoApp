@@ -73,7 +73,7 @@ export class HomeComponent {
 
   deleteTask(index: number) {
     //Eliminar un elemento de un array con signal y sin mutar el array utilizando el metodo filter
-    this.tasks.update((tasks) => tasks.filter((task, i) => i !== index))
+    this.tasks2.update((tasks2) => tasks2.filter((task2, i) => i !== index))
   }
 
 }
