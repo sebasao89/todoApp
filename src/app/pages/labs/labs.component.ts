@@ -34,11 +34,11 @@ export class LabsComponent {
 
   img: string = "https://s3.eu-west-1.amazonaws.com/redsys-prod/articles/679210935de42a1be6065252/images/teaserImage_xxxx_angular_header_1699351460248_1699362954921.png"
 
-  person = {
+  person = signal({
     name: "Sebasao",
     age: 34,
     avatar: "https://s3.eu-west-1.amazonaws.com/redsys-prod/articles/679210935de42a1be6065252/images/teaserImage_xxxx_angular_header_1699351460248_1699362954921.png"
-  }
+  })
 
   clickHandler() {
     alert("Welcome!")

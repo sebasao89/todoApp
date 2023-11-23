@@ -17,7 +17,8 @@
   <button class="bg-slate-500" [disabled]="disabled">Click here!</button>
   <img [src]="img" alt="" class="w-60 h-30 border mt-5">
 
-  <p>Object Person: {{ person.name }} </p>
+  <p>Object name: {{ person().name }} </p>
+  <p>Object age: {{ person().age }} </p>
 
   <hr>
   <h1 class="text-3xl">Event Binding</h1>
@@ -41,5 +42,14 @@
   <hr>
   <h1 class="text-3xl">Directivas de control</h1>
 
+  <h1 class="text-xl">if</h1>
+  @if (myName2() == "Mar" ) {
+    <div> My content </div>
+  }
 
+  @if (person().name === "Sebasao" && person().age > 25) {
+    <div> content with condition object signal</div>
+  } @else {
+    <div> No cumples los requisitos</div>
+  }
 </div>

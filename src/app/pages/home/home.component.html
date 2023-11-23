@@ -26,7 +26,13 @@
                     }
                 </ul>
                 <mat-divider></mat-divider>
-                <p class="mt-4"><strong>Items left: </strong> {{ tasks2().length }}</p>
+                @if ( tasks2().length === 0) {
+                    <p class="mt-4"><strong>Items vacio: </strong> {{ tasks2().length }}</p>
+                } @else if ( tasks2().length === 1) {
+                    <p class="mt-4"><strong>Item: </strong> {{ tasks2().length }}</p>
+                } @else {
+                    <p class="mt-4"><strong>Items: </strong> {{ tasks2().length }}</p>
+                }
             </mat-card-content>
         </mat-card>
     </div>
