@@ -1,0 +1,7 @@
+.btnDelete {
+    display: none;
+}
+
+li:hover .btnDelete {
+    display: block; /* Mostrar el botón de eliminar al hacer hover sobre el <li> */
+  }
