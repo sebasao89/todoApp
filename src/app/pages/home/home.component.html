@@ -9,7 +9,7 @@
     <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
         <mat-form-field class="w-full">
             <mat-label>Type new to do</mat-label>
-            <input matInput placeholder="Ex. work" (change)="inputChangeHandler($event)">
+            <input matInput placeholder="Ex. work" [formControl]="newTask2Ctrl" (keydown.enter)="inputChangeHandler()">
         </mat-form-field>
     </div>
     <div class="col-start-2 col-end-12 md:col-start-4 md:col-end-10">
@@ -17,8 +17,9 @@
             <mat-card-content>
                 <ul flex flex-wrap>
                     @for (item of tasks2(); track $index) {
-                    <li class="flex items-center">
-                        <mat-checkbox [checked]="item.completed" (change)="updateTask($index)">{{ item.title }}</mat-checkbox>                        
+                    <li class="flex items-center" [class.completed]="item.completed">
+                        <mat-checkbox [checked]="item.completed" (change)="updateTask($index)"></mat-checkbox>
+                        <label>{{ item.title }}</label>                        
                         <button mat-mini-fab color="warn" class="ml-auto btnDelete" (click)="deleteTask($index)">
                             <mat-icon>x</mat-icon>
                         </button>
@@ -38,8 +39,8 @@
     </div>
 </div>
 
-<pre>
+<!-- <pre>
     <code>
         {{ tasks2() | json }}
     </code>
-</pre>
+</pre> -->

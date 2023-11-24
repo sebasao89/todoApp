@@ -52,4 +52,19 @@
   } @else {
     <div> No cumples los requisitos</div>
   }
+
+  <hr>
+  <h2 class="text-2xl">Manejo de Inputs (ReactiveFormsModule)</h2>
+  <input type="color" [formControl]="colorCtrl">
+  <p>Color: {{ colorCtrl.value }}</p>
+
+  <hr>
+  <h2 class="text-2xl">Styles</h2>
+  <input type="number" [formControl]="withCtrl">
+  <span class="box" [style.width.px]="withCtrl.value"></span>
+
+  <hr>
+  <input type="text" class="border mb-2" [formControl]="nameCtrl"> <br>
+  <span class="messageError">Nombre incorrecto</span>
+
 </div>

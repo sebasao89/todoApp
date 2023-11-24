@@ -1,14 +1,21 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.css'
 })
 export class LabsComponent {
+
+  constructor() {
+    this.colorCtrl.valueChanges.subscribe( value => {
+      console.log(value)
+    })
+  }
 
   subtitle = 'Bienvenidos!';
 
@@ -38,6 +45,19 @@ export class LabsComponent {
     name: "Sebasao",
     age: 34,
     avatar: "https://s3.eu-west-1.amazonaws.com/redsys-prod/articles/679210935de42a1be6065252/images/teaserImage_xxxx_angular_header_1699351460248_1699362954921.png"
+  })
+
+  colorCtrl = new FormControl()
+  withCtrl = new FormControl(50, {
+    nonNullable: true
+  })
+
+  nameCtrl = new FormControl("", {
+    nonNullable: true,
+    validators: [
+      Validators.required,
+      Validators.minLength(3)
+    ]
   })
 
   clickHandler() {

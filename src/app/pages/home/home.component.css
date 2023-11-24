@@ -4,4 +4,8 @@
 
 li:hover .btnDelete {
     display: block; /* Mostrar el botón de eliminar al hacer hover sobre el <li> */
-  }
+}
+
+.completed {
+    text-decoration: line-through;
+}

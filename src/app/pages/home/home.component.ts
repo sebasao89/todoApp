@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // ANGULAR MATERIAL
 import { MatInputModule } from '@angular/material/input';
@@ -54,11 +54,28 @@ export class HomeComponent {
     }
   ])
 
-  inputChangeHandler(event: Event) {
-    const input = event.target as HTMLInputElement
-    const newTask = input.value 
-    this.addTask(newTask)
-    input.value = ''   
+  newTask2Ctrl = new FormControl('', {
+    nonNullable: true,
+    validators: [
+      Validators.required
+    ]
+  })
+
+  // inputChangeHandler(event: Event) {
+  //   const input = event.target as HTMLInputElement
+  //   const newTask = input.value 
+  //   this.addTask(newTask)
+  //   input.value = ''   
+  // }
+
+  inputChangeHandler() {
+    if( this.newTask2Ctrl.valid ) {
+      const value = this.newTask2Ctrl.value.trim()
+      if( value !== "") {
+        this.addTask(value)
+        this.newTask2Ctrl.setValue('')   
+      }
+    }
   }
 
   addTask(title: string) {
