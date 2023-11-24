@@ -109,6 +109,10 @@ export class HomeComponent {
     })
   }
 
+  edidingTask() {
+    
+  }
+
 
 }
 
