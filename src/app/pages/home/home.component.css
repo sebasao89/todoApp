@@ -9,3 +9,10 @@ li:hover .btnDelete {
 .completed {
     text-decoration: line-through;
 }
+
+.selected {
+    background-color: #6e6767;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+}

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Injector, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -32,7 +32,7 @@ import { task } from '../../models/tasks.model';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   tasks = signal([
     'Instalar Angular CLI signal',
@@ -41,20 +41,22 @@ export class HomeComponent {
     'Crear componentes'
   ])
 
-  tasks2 = signal<task[]>([
-    {
-      id: Date.now(),
-      title: 'Crear proyecto',
-      completed: false,
-      editing: true
-    },
-    {
-      id: Date.now(),
-      title: 'Ejecutar proyecto',
-      completed: false,
-      editing: true
-    }
-  ])
+  // tasks2 = signal<task[]>([
+  //   {
+  //     id: Date.now(),
+  //     title: 'Crear proyecto',
+  //     completed: false,
+  //     editing: true
+  //   },
+  //   {
+  //     id: Date.now(),
+  //     title: 'Ejecutar proyecto',
+  //     completed: false,
+  //     editing: true
+  //   }
+  // ])
+
+  tasks2 = signal<task[]>([])
 
   newTask2Ctrl = new FormControl('', {
     nonNullable: true,
@@ -63,6 +65,38 @@ export class HomeComponent {
     ]
   })
 
+  filter = signal<'all' | 'pending' | 'completed'>('all')
+
+  tasksByFilter = computed(() => {
+    const filter = this.filter()
+    const task = this.tasks2()
+    if(filter === 'pending') {
+      return task.filter( task => !task.completed)
+    }
+    if(filter === 'completed') {
+      return task.filter( task => task.completed)
+    }
+    return task
+  })
+
+  injector = inject(Injector)
+
+  ngOnInit(){
+    const storage = localStorage.getItem('task2')
+    if(storage) {
+      const task2 = JSON.parse(storage)
+      this.tasks2.set(task2)
+    }
+    this.trackTasks()
+  }
+  
+  trackTasks() {
+    effect( () => {
+      const task2 = this.tasks2()
+      // console.log('Run effect()')
+      localStorage.setItem('task2', JSON.stringify(task2))
+    }, { injector: this.injector })
+  }
   // editing: boolean = false
 
   // inputChangeHandler(event: Event) {
@@ -148,6 +182,10 @@ export class HomeComponent {
       return task
       })
     })
+  }
+
+  changeFilter(filter: 'all' | 'pending' | 'completed') {
+    this.filter.set(filter)
   }
 
 

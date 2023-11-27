@@ -16,7 +16,7 @@
         <mat-card>
             <mat-card-content>
                 <ul flex flex-wrap>
-                    @for (item of tasks2(); track $index) {
+                    @for (item of tasksByFilter(); track $index) {
                     <li class="flex items-center" [class.completed]="item.completed" (dblclick)="editingModeTask($index)">
                         <mat-checkbox [checked]="item.completed" (change)="updateTask($index)"></mat-checkbox>
                         <input [disabled]="item.editing" class="edit" [value]="item.title" (keydown.enter)="editingTask($index, $event)">
@@ -30,19 +30,19 @@
                 <mat-divider></mat-divider>
                 <div class="grid grid-cols-3 gap-2">
                     <div>
-                        @if ( tasks2().length === 0) {
-                            <p class="mt-4"><strong>Items vacio: </strong> {{ tasks2().length }}</p>
-                        } @else if ( tasks2().length === 1) {
-                            <p class="mt-4"><strong>Item: </strong> {{ tasks2().length }}</p>
+                        @if ( tasksByFilter().length === 0) {
+                            <p class="mt-4"><strong>Items vacio: </strong> {{ tasksByFilter().length }}</p>
+                        } @else if ( tasksByFilter().length === 1) {
+                            <p class="mt-4"><strong>Item: </strong> {{ tasksByFilter().length }}</p>
                         } @else {
-                            <p class="mt-4"><strong>Items: </strong> {{ tasks2().length }}</p>
+                            <p class="mt-4"><strong>Items: </strong> {{ tasksByFilter().length }}</p>
                         }
                     </div>
                     <div>
                         <ul class="flex mt-4">
-                            <li class="mr-4"><a>All</a></li>
-                            <li class="mr-4"><a>Completed</a></li>
-                            <li><a>Imcompleted</a></li>
+                            <li (click)="changeFilter('all')" class="mr-4 cursor-pointer " [class.selected]="filter() === 'all'"><a>All</a></li>
+                            <li (click)="changeFilter('pending')" class="mr-4 cursor-pointer " [class.selected]="filter() === 'pending'"><a>pending</a></li>
+                            <li (click)="changeFilter('completed')" class="cursor-pointer " [class.selected]="filter() === 'completed'"><a>completed</a></li>
                         </ul>
                     </div>
                     <div class="mt-4 flex justify-end">
@@ -53,6 +53,8 @@
         </mat-card>
     </div>
 </div>
+
+<!-- <h2>{{ filter() }}</h2> -->
 
 <!-- <pre>
     <code>
