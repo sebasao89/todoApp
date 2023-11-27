@@ -28,13 +28,27 @@
                     }
                 </ul>
                 <mat-divider></mat-divider>
-                @if ( tasks2().length === 0) {
-                    <p class="mt-4"><strong>Items vacio: </strong> {{ tasks2().length }}</p>
-                } @else if ( tasks2().length === 1) {
-                    <p class="mt-4"><strong>Item: </strong> {{ tasks2().length }}</p>
-                } @else {
-                    <p class="mt-4"><strong>Items: </strong> {{ tasks2().length }}</p>
-                }
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        @if ( tasks2().length === 0) {
+                            <p class="mt-4"><strong>Items vacio: </strong> {{ tasks2().length }}</p>
+                        } @else if ( tasks2().length === 1) {
+                            <p class="mt-4"><strong>Item: </strong> {{ tasks2().length }}</p>
+                        } @else {
+                            <p class="mt-4"><strong>Items: </strong> {{ tasks2().length }}</p>
+                        }
+                    </div>
+                    <div>
+                        <ul class="flex mt-4">
+                            <li class="mr-4"><a>All</a></li>
+                            <li class="mr-4"><a>Completed</a></li>
+                            <li><a>Imcompleted</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <p>Clear completed</p>
+                    </div>
+                </div>
             </mat-card-content>
         </mat-card>
     </div>
