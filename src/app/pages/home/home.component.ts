@@ -133,6 +133,23 @@ export class HomeComponent {
     })
   }
 
+  editingTask(index: number, event: Event) {
+    const input = event.target as HTMLInputElement
+
+    this.tasks2.update((tasks2) => {
+      return tasks2.map((task, position) => {
+        if(position === index) {
+          return {
+            ...task,
+            title: input.value,
+            editing: true
+        }
+      }
+      return task
+      })
+    })
+  }
+
 
 }
 
