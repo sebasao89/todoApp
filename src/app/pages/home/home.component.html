@@ -17,9 +17,9 @@
             <mat-card-content>
                 <ul flex flex-wrap>
                     @for (item of tasks2(); track $index) {
-                    <li class="flex items-center" [class.completed]="item.completed" (dblclick)="edidingTask()">
+                    <li class="flex items-center" [class.completed]="item.completed" (dblclick)="editingModeTask($index)">
                         <mat-checkbox [checked]="item.completed" (change)="updateTask($index)"></mat-checkbox>
-                        <input class="edit" [value]="item.title">
+                        <input [disabled]="item.editing" class="edit" [value]="item.title">
                         <!-- <label>{{ item.title }}</label>                         -->
                         <button mat-mini-fab color="warn" class="ml-auto btnDelete" (click)="deleteTask($index)">
                             <mat-icon>x</mat-icon>

@@ -45,12 +45,14 @@ export class HomeComponent {
     {
       id: Date.now(),
       title: 'Crear proyecto',
-      completed: false
+      completed: false,
+      editing: true
     },
     {
       id: Date.now(),
       title: 'Ejecutar proyecto',
-      completed: false
+      completed: false,
+      editing: true
     }
   ])
 
@@ -60,6 +62,8 @@ export class HomeComponent {
       Validators.required
     ]
   })
+
+  // editing: boolean = false
 
   // inputChangeHandler(event: Event) {
   //   const input = event.target as HTMLInputElement
@@ -109,8 +113,24 @@ export class HomeComponent {
     })
   }
 
-  edidingTask() {
-    
+  editingModeTask(index: number) {
+    // this.editing.set(false)
+    // this.editing = !this.editing;
+
+    this.tasks2.update((tasks2) => {
+      return tasks2.map((task, position) => {
+        if(position === index) {
+          return {
+            ...task,
+            editing: false
+        }
+      }
+      return {
+        ...task,
+        editing: true
+      }
+      })
+    })
   }
 
 
